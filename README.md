@@ -1,43 +1,88 @@
-# Early-Short-Circuit-Detection-IoT-Fire-Alert-System
-A smart embedded system that detects early signs of short circuits using real-time current, voltage, and temperature monitoring. When a potential fault is identified, the system cuts power and instantly alerts the nearest fire station and users via IoT platforms (Blynk, IFTTT, SMS, or email). 
-# Early Short Circuit Detection & IoT-Based Fire Alert System 🔥
+# 🔥 Early Short Circuit Detection & IoT-Based Fire Alert System (with Machine Learning)
 
 ## 🔍 Overview
-This project detects early signs of short circuits using current, voltage, and temperature sensors. When a fault is detected, the system immediately:
-- Cuts off power via relay
-- Sends alerts via Wi-Fi (Blynk, IFTTT, or email)
-- Notifies the nearest fire station via SMS or online dashboard
+
+This project is an enhanced smart embedded system that detects early signs of short circuits and fire hazards by analyzing real-time current, voltage, gas concentration, and temperature data. Using Machine Learning, it intelligently identifies abnormal behavior and triggers safety protocols.
+
+### 🚨 What Happens During a Fault:
+
+* ML model detects electrical/gas anomalies
+* Cuts off power via relay
+* Sends instant alerts through IoT platforms (Blynk)
+* Shares location with nearest fire station or emergency contacts
+
+---
 
 ## ⚙️ Features
-- Real-time short circuit detection
-- IoT-enabled alerts (SMS, Email, App)
-- Local relay trip for circuit protection
-- Fire station notification with location
-- Optional offline alert using LoRa
+
+* ✅ Real-time anomaly detection with ML
+* 🧠 ML model trained on voltage/current/gas/temp data
+* 📲 IoT alerts (Blynk)
+* 🔌 Automatic relay disconnection
+* 🌐 Location-sharing via GPS or hardcoded coordinates
+
+---
+
+## 🧠 Machine Learning Integration
+
+* Sensor data (voltage, current, gas, temperature) is collected and logged
+* Trained on an Isolation Forest or Decision Tree model
+* Model is optimized using TensorFlow Lite for Microcontrollers
+* ESP32 runs the model inference to detect abnormal sensor behavior
+
+### ML Pipeline:
+
+1. Data Collection (data_logger.ino)
+2. Model Training (`train_model.ipynb`)
+3. Conversion to `.tflite` and upload to ESP32
+4. Real-time prediction and fault classification
+
+---
 
 ## 🛠️ Tech Stack
-- ESP32 (Wi-Fi)
-- SIM800L (GSM/SMS)
-- Blynk IoT Platform
-- IFTTT Webhooks
-- Firebase/ThingsBoard (Optional)
 
-## 📦 Directory Structure
-- `firmware/` – Arduino code for ESP32 and GSM
-- `hardware/` – Circuit diagrams and schematics
-- `iot_integration/` – Setup guides for cloud services
-- `dashboard/` – Fire station dashboard (HTML/JS)
-- `docs/` – Project documents and troubleshooting
+* **Microcontroller:** ESP32
+* **Sensors:**
+
+  * MQ-2 (Gas sensor)
+  * ACS712 (Current sensor)
+  * Voltage Sensor (0–25V analog)
+  * DHT11 (Temperature & Humidity)
+* **IoT Platforms:**
+
+  * Blynk
+  * ThingsBoard 
+ 
+---
+
 
 ## 📲 Alert Methods
-- Blynk mobile notifications
-- SMS via SIM800L
-- Email via ESP32 SMTP
-- LoRa message to base station (optional)
 
-## 📌 Location & Contact Sharing
-Hardcoded GPS or module-based location sharing included in all alerts.
+* **Blynk notifications** (mobile app)
+---
 
-## 📷 Screenshots
-![System Block Diagram](hardware/circuit_diagram.png)
-![Workflow](iot_integration/fire_station_alert_workflow.png)
+## 📌 Location Sharing
+
+All alert methods include approximate or GPS-based location:
+
+
+* 📡 GPS module for real-time geolocation
+
+---
+
+## 🧪 Testing & Deployment
+
+1. Deploy ESP32 with all sensors and GSM module
+2. Collect real-time data and test ML predictions
+3. Simulate hazards (e.g., gas leak, short circuit)
+4. Verify alert delivery and device cutoff response
+
+---
+
+## 📷 Screenshots & Diagrams
+
+Include in `docs/` or `hardware/`:
+
+* Block diagram
+* Circuit schematic
+* ML model architecture
