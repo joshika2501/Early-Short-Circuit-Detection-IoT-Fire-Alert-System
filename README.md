@@ -1,88 +1,122 @@
-# 🔥 Early Short Circuit Detection & IoT-Based Fire Alert System (with Machine Learning)
+🔥 Early Short Circuit Detection & IoT-Based Fire Alert System (with Machine Learning + LoRa)
+🔍 Overview
 
-## 🔍 Overview
+This project is a smart embedded safety system designed to detect early signs of short circuits and fire hazards by analyzing current, voltage, gas concentration, and temperature data.
+It integrates Machine Learning models for anomaly detection and IoT platforms for real-time alerting, ensuring fast response and preventive action.
 
-This project is an enhanced smart embedded system that detects early signs of short circuits and fire hazards by analyzing real-time current, voltage, gas concentration, and temperature data. Using Machine Learning, it intelligently identifies abnormal behavior and triggers safety protocols.
+🚨 What Happens During a Fault
 
-### 🚨 What Happens During a Fault:
+ML model detects anomalies (abnormal electrical/gas/temperature patterns).
 
-* ML model detects electrical/gas anomalies
-* Cuts off power via relay
-* Sends instant alerts through IoT platforms (Blynk)
-* Shares location with nearest fire station or emergency contacts
+Relay cuts off power supply instantly.
 
----
+IoT Alert sent via Blynk / ThingsBoard.
 
-## ⚙️ Features
+Location shared with fire station/emergency contacts.
 
-* ✅ Real-time anomaly detection with ML
-* 🧠 ML model trained on voltage/current/gas/temp data
-* 📲 IoT alerts (Blynk)
-* 🔌 Automatic relay disconnection
-* 🌐 Location-sharing via GPS or hardcoded coordinates
+LoRa enables long-range, low-power communication, even without WiFi.
 
----
+⚙ Features
 
-## 🧠 Machine Learning Integration
+✅ Real-time anomaly detection using ML
+🧠 Multiple ML models (Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, RNN, One-Class SVM)
+📲 IoT alerts through Blynk / ThingsBoard
+🔌 Automatic relay disconnection for fire prevention
+📡 Location-sharing via GPS / hardcoded coordinates
+📡 LoRa integration for remote communication in areas with no internet
 
-* Sensor data (voltage, current, gas, temperature) is collected and logged
-* Trained on an Isolation Forest or Decision Tree model
-* Model is optimized using TensorFlow Lite for Microcontrollers
-* ESP32 runs the model inference to detect abnormal sensor behavior
+🧠 Machine Learning Integration
 
-### ML Pipeline:
+The system leverages traditional ML + deep learning + anomaly detection models to classify faults:
 
-1. Data Collection (data_logger.ino)
-2. Model Training (`train_model.ipynb`)
-3. Conversion to `.tflite` and upload to ESP32
-4. Real-time prediction and fault classification
+📊 ML Models Used
 
----
+Logistic Regression / Decision Tree → simple & interpretable models for basic classification of normal vs fault states.
 
-## 🛠️ Tech Stack
+Random Forest / Gradient Boosting (XGBoost, LightGBM) → handle non-linear data and improve accuracy for mixed sensor readings.
 
-* **Microcontroller:** ESP32
-* **Sensors:**
+Recurrent Neural Networks (RNNs) → detect time-series anomalies in sensor data streams.
 
-  * MQ-2 (Gas sensor)
-  * ACS712 (Current sensor)
-  * Voltage Sensor (0–25V analog)
-  * DHT11 (Temperature & Humidity)
-* **IoT Platforms:**
+One-Class SVM → useful for novel anomaly detection, especially rare short-circuit events.
 
-  * Blynk
-  * ThingsBoard 
- 
----
+🔄 ML Pipeline
 
+Data Collection → (📄 data_logger.ino) collects voltage, current, gas, and temperature values.
 
-## 📲 Alert Methods
+Model Training → (📓 train_model.ipynb) with scikit-learn, XGBoost, TensorFlow.
 
-* **Blynk notifications** (mobile app)
----
+Model Conversion → trained models converted to TensorFlow Lite for ESP32.
 
-## 📌 Location Sharing
+Deployment → ESP32 runs .tflite inference for real-time predictions.
 
-All alert methods include approximate or GPS-based location:
+Fault Classification → abnormal readings trigger cutoff + IoT alert.
 
+🛠 Tech Stack
 
-* 📡 GPS module for real-time geolocation
+Microcontroller: ESP32
 
----
+Sensors:
 
-## 🧪 Testing & Deployment
+MQ-2 → Gas detection
 
-1. Deploy ESP32 with all sensors and GSM module
-2. Collect real-time data and test ML predictions
-3. Simulate hazards (e.g., gas leak, short circuit)
-4. Verify alert delivery and device cutoff response
+ACS712 → Current monitoring
 
----
+Voltage Sensor (0–25V analog)
 
-## 📷 Screenshots & Diagrams
+DHT11 → Temperature & Humidity
 
-Include in `docs/` or `hardware/`:
+IoT Platforms:
 
-* Block diagram
-* Circuit schematic
-* ML model architecture
+Blynk (real-time alerts on mobile)
+
+ThingsBoard (data visualization & analytics)
+
+LoRa (long-range, low-power communication for rural/remote areas)
+
+📲 Alert Methods
+
+🔔 Blynk notifications on mobile app
+
+📧 Email / SMS via IoT integration
+
+📌 Location Sharing (GPS module / hardcoded coordinates)
+
+📡 LoRa Integration
+
+LoRa is used as a backup communication channel in case WiFi or GSM fails.
+
+✅ Advantages of LoRa:
+
+Low Cost → operates on unlicensed ISM bands, no SIM needed.
+
+Long Range → up to 10+ km in open areas.
+
+Low Power → ideal for battery-powered safety systems.
+
+Reliable → ensures alerts even in remote/rural areas without internet.
+
+🧪 Testing & Deployment
+
+Deploy ESP32 with all sensors + GSM/GPS + LoRa module.
+
+Collect real-time sensor data & validate ML predictions.
+
+Simulate hazards (gas leak, short circuit, overheating).
+
+Verify:
+
+⚡ Relay cutoff response
+
+📲 Alert delivery (Blynk/ThingsBoard/LoRa)
+
+📡 Location sharing
+
+🚀 Impact & Benefits
+
+🏠 Home safety → prevents electrical fires.
+
+🏭 Industrial monitoring → detects anomalies in machinery/equipment.
+
+🌍 Scalable solution → low-cost, suitable for both urban & rural areas.
+
+📶 Works offline with LoRa, ensuring uninterrupted alerts.
