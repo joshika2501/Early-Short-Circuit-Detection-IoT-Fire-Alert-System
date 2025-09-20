@@ -25,11 +25,11 @@ LoRa enables long-range, low-power communication, even without WiFi.
 📡 Location-sharing via GPS / hardcoded coordinates
 📡 LoRa integration for remote communication in areas with no internet
 
-🧠 Machine Learning Integration
+ Machine Learning Integration
 
 The system leverages traditional ML + deep learning + anomaly detection models to classify faults:
 
-📊 ML Models Used
+ ML Models Used
 
 Logistic Regression / Decision Tree → simple & interpretable models for basic classification of normal vs fault states.
 
@@ -39,11 +39,11 @@ Recurrent Neural Networks (RNNs) → detect time-series anomalies in sensor data
 
 One-Class SVM → useful for novel anomaly detection, especially rare short-circuit events.
 
-🔄 ML Pipeline
+ ML Pipeline
 
-Data Collection → (📄 data_logger.ino) collects voltage, current, gas, and temperature values.
+Data Collection → ( data_logger.ino) collects voltage, current, gas, and temperature values.
 
-Model Training → (📓 train_model.ipynb) with scikit-learn, XGBoost, TensorFlow.
+Model Training → ( train_model.ipynb) with scikit-learn, XGBoost, TensorFlow.
 
 Model Conversion → trained models converted to TensorFlow Lite for ESP32.
 
